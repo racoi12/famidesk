@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamiDesk - Sistema de Gestión Familiar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FamiDesk</h1>
+        <p>Sistema familiar de gestión de tickets, incidentes, proyectos y tareas</p>
+        <p>La aplicación está en desarrollo. Pronto tendrás acceso a todas las funcionalidades.</p>
+        <p><strong>API Status:</strong> <span id="api-status">Verificando...</span></p>
+    </div>
+
+    <script>
+        // Script para verificar el estado de la API
+        fetch('/api/health')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('api-status').textContent = data.message || 'Funcionando';
+                document.getElementById('api-status').style.color = '#27ae60';
+            })
+            .catch(error => {
+                document.getElementById('api-status').textContent = 'Error: API no disponible';
+                document.getElementById('api-status').style.color = '#e74c3c';
+                console.error('Error al verificar la API:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,5 +1,48 @@
-__pycache__/
-*.pyc
+# Dependencias
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Entorno
 .env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Base de datos SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# Directorios y archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Directorios de pruebas y cobertura
+coverage/
+.nyc_output/
+
+# Directorios de logs
+logs/
 *.log
-venv/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+
+# Directorio de archivos subidos
+uploads/*
+!uploads/.gitkeep
+
+# Directorio de compilación/distribución
+dist/
+build/
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
