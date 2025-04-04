@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    container_name: famidesk-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=your_secret_key_here
+      - JWT_EXPIRES_IN=24h
+      - DB_PATH=./database.sqlite
+      - DEFAULT_SLA_HOURS=24
+    networks:
+      - famidesk-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: famidesk-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - famidesk-network
+
+networks:
+  famidesk-network:
+    driver: bridge
